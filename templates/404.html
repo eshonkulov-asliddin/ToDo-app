@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="color: #fff; text-align: center; margin-top: 15%;">
+    <h1>404 ERROR</h1>
+    <h4>Oooooops! Looks like nothing was found at this location.<br>
+        Maybe try on of the links below, click on the top menu<br>
+        or try a search?</h4><br>
+
+        {% if request.user.is_authenticated %}
+        <a type="button" href=" {% url 'tasks' %}" class="btn btn-outline-white">Go back</a>
+        {% else %}
+        <a type="button" href=" {% url 'home' %}" class="btn btn-outline-white">Go back</a>
+
+        {% endif %}
+</div>   
+{% endblock content%}

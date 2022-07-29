@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+<section class="vh-10 gradient-custom" style="background-color: #33b5e5;"  >
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-7"> 
+            <div class="card">
+              <div class="card-body p-5">
+
+                <form  action="{% url 'register-user' %}" method="POST">
+                    {% csrf_token %}
+
+                    <h1 style="text-align: center;">Sign Up</h1>
+                    <br>
+
+                    {{ form|crispy }}
+                    <input type="submit" class="btn btn-info" value="Create Account">
+                    <hr>
+                    <p>Already have an Account?</p>
+                        <a class="btn btn-outline-info" href="{% url 'login' %}">Log In</a>
+                </form>         
+  
+
+{% endblock content %}

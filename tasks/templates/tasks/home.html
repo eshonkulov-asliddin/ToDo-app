@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="vh-10 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-7"> 
+            <div class="card">
+                <div class="card-body p-5">
+
+                    <h1>Welcome, <span style="color: #33b5e5;">Log In </span>to create your own To Do list</h1>
+                    <a type="button" href="{% url 'login' %}" class="btn btn-white">Login</a> 
+                    <a type="button" href="{% url 'register-user' %}" class="btn btn-info">Sign Up</a> 
+
+                </div>
+            </div>          
+{% endblock content %}

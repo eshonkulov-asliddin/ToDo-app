@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+{% load 'crispy_forms_tags' %}
+
+
+
+          <div class="card">
+            <div class="card-body p-5">
+        <form class=" justify-content-center align-items-center" method="POST" >
+          {% csrf_token %}      
+        
+          <a href="{% url 'home' %}" type="submit" class="btn btn-primary ms-2">Update</a>
+        </form>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+    
+{% endblock content%}

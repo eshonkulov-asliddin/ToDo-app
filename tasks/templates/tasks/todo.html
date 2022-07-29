@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="vh-10 gradient-custom" style="background-color: #33b5e5;" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-7"> 
+          <div class="card">
+            <div class="card-body p-5">
+              
+                <div class="d-flex justify-content-center align-items-center mb-4">          
+                  <div class="input-group rounded">
+
+                    <h1>Hello, <span>{{ request.user.username }}</span></h1>
+
+                  </div>
+                   <div>
+                      <a type="button" href="{% url 'logout' %}" class="btn btn-info">Logout</a> 
+                    </div>
+
+                  
+                  </div>
+                    
+              <p>You have <span style="color: #33b5e5;">{{incomplete}}</span> incomplete task...</p>
+              <hr>
+              
+ 
+  
+              <form class="d-flex justify-content-center align-items-center mb-4" method= "GET" >
+                {% csrf_token%}
+                
+                <div class="input-group rounded">
+                  {% if search_query %}
+                    <input type="text" style="max-width: 299px;" type="search" class="form-control rounded" placeholder="Search..."  value="{{search_query}}"
+                      aria-label="Search" aria-describedby="search-addon" name="text" />
+                  {% else %}
+                    <input type="text" style="max-width: 299px;" type="search" class="form-control rounded" placeholder="Search..." 
+                    aria-label="Search" aria-describedby="search-addon" name="text" />
+                  {% endif %}
+                  <span class="input-group-text" style="background-color: #33b5e5" >
+                    <button style="border: 0; background-color: #33b5e5; color: white;"><i class="fas fa-search"></i></button>
+                  </span>
+
+                </div>
+
+                <div>
+                  <a class="create" href="{% url 'todo-create' %}">+</a>
+                </div>
+              </form>
+
+  
+              <!-- Tabs content -->
+              <div class="tab-content" id="ex1-content" >
+                <div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
+                aria-labelledby="ex1-tab-1" >
+
+                  {% if not tasks%}
+                    {% if search_query %}
+                      <h1>Not Found...</h1>
+                    {% else %}
+                  <h1>Create a task...</h1>
+                  {% endif %}
+                  {% endif %}
+                  
+                  {% for task in tasks %}
+                  <ul class="list-group mb-0">
+                    
+
+                   {% if task.completed %}
+                      <li class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+                          style="background-color: #f4f6f7;">
+                      
+                          <div class="form-outline flex-fill">
+                              <a href="{% url 'todo-update' task.pk %}"><h5 style="margin-top: 0.6px; color: #33b5e5; text-decoration: line-through; text-decoration-color: #333;">{{ task.name }}</h5></a>
+                          </div>
+                          
+                          <!-- <a type="button" href="{% url 'todo-delete' task.pk %}" style='left: 21rem; ' class="btn btn-white">&#9747;</a> -->
+                          <a class="delete" href="{% url 'todo-delete' task.pk %}">X</a>
+                          
+                          
+                      </li>
+                    {% else %}    
+                      <li class="list-group-item d-flex align-items-center border-0 mb-0 rounded"
+                        style="background-color: #f4f6f7;">
+                        <!-- <input class="form-check-input me-2" type="checkbox" value="" aria-label="..." /> -->
+                        <div class="form-outline flex-fill">
+
+                          <a style='color: #33b5e5' href="{% url 'todo-update' task.pk %}"><h5 style="margin-top: 0.6rem;">{{ task.name }}</h5></a></s>
+                        </div>
+                    
+                        <!-- <a type="button" href="{% url 'todo-delete' task.pk %}" style='left: 21rem;' class="btn btn-white">&#9747;</a -->
+                          
+                          <a class="delete" href="{% url 'todo-complete' task.pk %}">&#9989;</a>
+                          <!-- <i style="width: 2rem" class="fa-solid fa-circle-check"></i> -->
+                          <a class="delete" href="{% url 'todo-delete' task.pk %}">X</a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  {% endfor %}
+                </div>
+              
+                  </ul>
+                </div>
+        
+              
+  
+            </div>
+      </div>    
+  
+
+
+      
+
+  {% endblock content %}
+
+  

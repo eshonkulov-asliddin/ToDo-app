@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section class="vh-10 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-7">
+            <div class="card">
+                <div class="card-body p-5">
+        
+                    <form method="POST" enctype="multipart/form-data" class="justify-content-center align-items-center"  >
+                    {% csrf_token %}
+                    
+                    {{form|crispy}}
+                
+                    {% if page == 'create'%}
+                    <br>
+                    <input type="submit" value="Create" class="btn btn-info ms-2" />
+                    {% else %}
+                    <br>
+                    <input type="submit" value="Update" class="btn btn-info ms-2" />
+                    {% endif %}
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</section>
+{% endblock content %}

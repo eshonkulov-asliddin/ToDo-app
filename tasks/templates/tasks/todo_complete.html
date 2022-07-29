@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<section class="vh-10 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-7"> 
+          <div class="card">
+            <div class="card-body p-5">
+        
+      <form method="POST"> 
+        {% csrf_token %}
+
+        
+        <h1>Have you finished a task <br>"{{task}}"</h1>
+        <br>
+        <a type="button" href="{% url 'home' %}" class='btn btn-info' href="">&#x2190 Not yet</a>
+        <input type="submit" class="btn btn-danger" value="Yes">
+    </form> 
+       
+</div>
+</div>
+{% endblock content %}
